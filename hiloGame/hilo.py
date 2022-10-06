@@ -1,36 +1,48 @@
 import random
 
-while True:
+class Director():
+    '''The responsibility of the director is to direct the game'''
 
-    class Director:
+    def __init__(self) -> None:
+        pass
 
-        def __init__(self) -> None:
+
+    keep_playing = "yes"
+
+    while keep_playing == "yes":
 
 
-            self.highest = 300
+        #class Director:
 
-            self.answer = random.randint(1, 300)
+            #def __init__(self) -> None:
 
-            print(self.answer)
 
-        def start_game(self):
+        highest = 300
 
-            user_guess = float(input("Please guess a number btwn 1 - {}: or enter 0 to quit".format(self.highest)))
+        answer = random.randint(1, 300)
 
-            if user_guess == self.answer:
-                print("Well done, you got it!")
-            elif user_guess > self.answer:
-                print("Please guess lower")
+        guess_count = 0
+
+        user_guess = -1
+
+        print(answer)
+
+
+        # Keep going as long as the guess doesn't match the magic number
+        while user_guess != answer:
+            user_guess = int(input("What is your guess btwn 1 - {}: ".format(highest)))
+            guess_count = guess_count + 1
+
+            if user_guess < answer:
+                print("Higher")
+            elif user_guess > answer:
+                print("Lower")
             else:
-                print("Please guess higher")
+                print("You guessed it!")
 
-            while user_guess != self.answer:
-                user_guess = float(input(""))
-            #if user_guess == 0:
-             #   break
-            if user_guess == self.answer:
-                print("Well done, you got it")
-            elif user_guess > self.answer:
-                print("Please guess lower")
-            else:
-                print("Please guess higher")
+        # At this point, they have guessed it correctly
+        print(f"It took you {guess_count} guesses")
+
+        keep_playing = input("Would you like to play again (yes/no)? ")
+
+    print("Thank you for playing. Goodbye.")
